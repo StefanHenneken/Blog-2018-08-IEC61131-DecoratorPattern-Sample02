@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="FB_ItalianPizzaMozzarella" Id="{ea223156-5b5e-4799-9284-792e4c0e2e89}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_ItalianPizzaMozzarella EXTENDS FB_ItalianPizzaMargherita
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bBasil		: BOOL := TRUE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="bHasBasil" Id="{290a5c31-2e4f-456e-919d-ac60c6ffd80e}">
+      <Declaration><![CDATA[PROPERTY PUBLIC bHasBasil : BOOL]]></Declaration>
+      <Get Name="Get" Id="{f31e073b-9fb7-474c-9662-43d551eda861}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bHasBasil := this^.bBasil;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{18c0d77a-acd5-4bb2-ad60-1dc062be8d93}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[this^.bBasil := bHasBasil;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="GetPrice" Id="{8906e813-e3da-4856-8d4c-80974f72848b}">
+      <Declaration><![CDATA[METHOD PUBLIC GetPrice : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetPrice := SUPER^.GetPrice();
+IF (THIS^.bBasil) THEN
+	GetPrice := GetPrice + 0.25;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_ItalianPizzaMozzarella">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaMozzarella.bHasBasil.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaMozzarella.bHasBasil.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaMozzarella.GetPrice">
+      <LineId Id="5" Count="3" />
+      <LineId Id="3" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

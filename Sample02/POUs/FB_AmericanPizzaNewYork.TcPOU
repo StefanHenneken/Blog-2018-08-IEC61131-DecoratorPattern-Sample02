@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="FB_AmericanPizzaNewYork" Id="{ded0108f-44c4-4733-bef4-21814fff2981}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_AmericanPizzaNewYork EXTENDS FB_AmericanPizzaMargherita
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bBroccoli	: BOOL := TRUE;
+	bMushroom	: BOOL := TRUE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="bHasBroccoli" Id="{66e6f12d-88dd-4e05-a33e-94a248d60984}">
+      <Declaration><![CDATA[PROPERTY PUBLIC bHasBroccoli : BOOL]]></Declaration>
+      <Get Name="Get" Id="{73a1929f-75e4-491b-8571-66a2a9810319}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bHasBroccoli := this^.bBroccoli;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{790dd8b0-e942-42a2-82f8-eb0b9153f3f7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[this^.bBroccoli := bHasBroccoli;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="bHasMushroom" Id="{4f57592b-a619-4e81-9895-4261a626186c}">
+      <Declaration><![CDATA[PROPERTY PUBLIC bHasMushroom : BOOL]]></Declaration>
+      <Get Name="Get" Id="{38b67d32-6abe-4d34-bc92-e2edcc3b08c3}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bHasMushroom := this^.bMushroom;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{3657790e-1c6c-4265-9138-37441704b62b}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[this^.bMushroom := bHasMushroom;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="GetPrice" Id="{00705aee-2a37-4be1-8c79-d8c8214fba91}">
+      <Declaration><![CDATA[METHOD PUBLIC GetPrice : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetPrice := SUPER^.GetPrice();
+IF (THIS^.bBroccoli) THEN
+	GetPrice := GetPrice + 0.8;
+END_IF
+IF (THIS^.bMushroom) THEN
+	GetPrice := GetPrice + 0.75;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_AmericanPizzaNewYork">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AmericanPizzaNewYork.bHasBroccoli.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AmericanPizzaNewYork.bHasBroccoli.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AmericanPizzaNewYork.bHasMushroom.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AmericanPizzaNewYork.bHasMushroom.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AmericanPizzaNewYork.GetPrice">
+      <LineId Id="9" Count="5" />
+      <LineId Id="5" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

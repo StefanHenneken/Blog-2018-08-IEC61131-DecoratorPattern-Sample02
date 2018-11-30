@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="FB_AmericanPizzaCalifornia" Id="{1708d268-70e2-4bce-b487-de09dbe3ebe6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_AmericanPizzaCalifornia EXTENDS FB_AmericanPizzaMargherita
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bPepperoni	: BOOL := TRUE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="bHasPepperoni" Id="{7f1e896f-d0c8-4a2b-bdb0-a5f8a47cdb09}">
+      <Declaration><![CDATA[PROPERTY PUBLIC bHasPepperoni : BOOL]]></Declaration>
+      <Get Name="Get" Id="{4ddd5c93-f39d-446e-ba79-2e459c5831c7}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bHasPepperoni := this^.bPepperoni;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{11872f25-a0b6-4eb7-8ab6-267f6a7234d4}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[this^.bPepperoni := bHasPepperoni;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="GetPrice" Id="{b4c04cb9-2ab2-4401-a9bb-30468ed49619}">
+      <Declaration><![CDATA[METHOD PUBLIC GetPrice : LREAL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetPrice := SUPER^.GetPrice();
+IF (THIS^.bPepperoni) THEN
+	GetPrice := GetPrice + 0.4;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_AmericanPizzaCalifornia">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AmericanPizzaCalifornia.bHasPepperoni.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AmericanPizzaCalifornia.bHasPepperoni.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_AmericanPizzaCalifornia.GetPrice">
+      <LineId Id="14" Count="0" />
+      <LineId Id="18" Count="1" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

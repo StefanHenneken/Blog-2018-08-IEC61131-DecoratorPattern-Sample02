@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="MAIN" Id="{a79e68da-8f37-46d8-bc6a-964b3f08892d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbItalianPizzaPiccante			: FB_ItalianPizzaPiccante;
+	fbItalianPizzaMozzarella		: FB_ItalianPizzaMozzarella;
+	fbItalianPizzaSalami			: FB_ItalianPizzaSalami;
+	fbAmericanPizzaCalifornia		: FB_AmericanPizzaCalifornia;
+	fbAmericanPizzaNewYork			: FB_AmericanPizzaNewYork;
+	aPizza 							: ARRAY [1..5] OF I_Pizza;
+	nIndex							: INT;
+	lrPrice							: LREAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[aPizza[1] := fbItalianPizzaPiccante;
+aPizza[2] := fbItalianPizzaMozzarella;
+aPizza[3] := fbItalianPizzaSalami;
+aPizza[4] := fbAmericanPizzaCalifornia;
+aPizza[5] := fbAmericanPizzaNewYork;
+
+lrPrice := 0;
+FOR nIndex := 1 TO 5 DO
+	lrPrice := lrPrice + aPizza[nIndex].GetPrice();
+END_FOR
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="12" Count="0" />
+      <LineId Id="33" Count="3" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="38" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="30" Count="0" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="28" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

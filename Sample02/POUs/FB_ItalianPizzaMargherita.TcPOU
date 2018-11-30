@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="FB_ItalianPizzaMargherita" Id="{01b9f8de-cd87-4aca-aa43-d6d501bcb44f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_ItalianPizzaMargherita EXTENDS FB_PizzaItalianStyle
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bCheese		: BOOL := TRUE;
+	bTomato		: BOOL := TRUE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="bHasCheese" Id="{a2b0bc13-3c5a-4d6c-a81a-3623047e5056}">
+      <Declaration><![CDATA[PROPERTY PUBLIC bHasCheese : BOOL]]></Declaration>
+      <Get Name="Get" Id="{4f303c06-fd8d-4486-8713-57c2f4ed2563}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bHasCheese := this^.bCheese;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{d6b4790b-dca6-43a2-9046-8771cdc5ba31}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[this^.bCheese := bHasCheese;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="bHasTomato" Id="{f05c209a-a7ca-473e-9b0c-1d314637b511}">
+      <Declaration><![CDATA[PROPERTY PUBLIC bHasTomato : BOOL]]></Declaration>
+      <Get Name="Get" Id="{6650a8d4-7df9-4081-8ea2-245fd3bdab9f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bHasTomato := this^.bTomato;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{2c78b884-ea64-4165-90f4-cd76947a5fee}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[this^.bTomato := bHasTomato;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="GetPrice" Id="{16fe620a-7ddf-4849-ad7e-214e84293023}">
+      <Declaration><![CDATA[METHOD PUBLIC GetPrice : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetPrice := SUPER^.GetPrice();
+IF (THIS^.bCheese) THEN
+	GetPrice := GetPrice + 1.1;
+END_IF
+IF (THIS^.bTomato) THEN
+	GetPrice := GetPrice + 0.9;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_ItalianPizzaMargherita">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaMargherita.bHasCheese.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaMargherita.bHasCheese.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaMargherita.bHasTomato.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaMargherita.bHasTomato.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaMargherita.GetPrice">
+      <LineId Id="3" Count="0" />
+      <LineId Id="7" Count="4" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

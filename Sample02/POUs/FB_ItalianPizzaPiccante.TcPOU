@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.12">
+  <POU Name="FB_ItalianPizzaPiccante" Id="{64337c8b-c5a9-4880-be10-7ff1e985eb1f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_ItalianPizzaPiccante EXTENDS FB_ItalianPizzaSalami
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	bChilli		: BOOL := TRUE;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="bHasChilli" Id="{df6ee347-b4bf-4978-9742-5976bc874d27}">
+      <Declaration><![CDATA[PROPERTY PUBLIC bHasChilli : BOOL]]></Declaration>
+      <Get Name="Get" Id="{3bea9967-416f-4dd0-858d-153a0421a3b9}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[bHasChilli := this^.bChilli;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{987be671-afd6-4bd4-a39f-8f21e145d49f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[this^.bChilli := bHasChilli;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Method Name="GetPrice" Id="{6be45b42-fc6d-4f79-8b84-5c11df8741a7}">
+      <Declaration><![CDATA[METHOD PUBLIC GetPrice : LREAL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[GetPrice := SUPER^.GetPrice();
+IF (THIS^.bHasChilli) THEN
+	GetPrice := GetPrice + 0.5;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_ItalianPizzaPiccante">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaPiccante.bHasChilli.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaPiccante.bHasChilli.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ItalianPizzaPiccante.GetPrice">
+      <LineId Id="5" Count="3" />
+      <LineId Id="3" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
